@@ -1,0 +1,6 @@
+atlas:
+  event:
+    thread-pool-size: 10
+    persistence-type: database
+    enable-async: true
+    max-retry-attempts: 3

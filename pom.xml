@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>io.github.nemoob</groupId>
+    <artifactId>atlas-event</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>atlas-event-core</module>
+        <module>atlas-event-spring-boot-starter</module>
+        <module>atlas-event-sample</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.boot.version>2.2.0.RELEASE</spring.boot.version>
+        <spring.version>5.2.0.RELEASE</spring.version>
+        <lombok.version>1.18.22</lombok.version>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+    </properties>
+
+    <name>Atlas Event</name>
+    <description>A flexible and powerful Event of Responsibility framework for Java</description>
+    <url>https://github.com/nemoob/atlas-event</url>
+
+    <scm>
+        <connection>scm:git:git://github.com/nemoob/atlas-event.git</connection>
+        <developerConnection>scm:git:ssh://github.com:nemoob/atlas-event.git</developerConnection>
+        <url>https://github.com/nemoob/atlas-event/tree/main</url>
+    </scm>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <!-- 添加实际的plugins配置 -->
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.4.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>ossrh</publishingServerId>
+                    <tokenAuth>true</tokenAuth>
+                </configuration>
+            </plugin>
+
+            <!--   source源码插件   官方要求 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--   javadoc插件  官方要求  -->
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <additionalOptions>
+                        <!-- skip strict check java doc-->
+                        <additionalOption>-Xdoclint:none</additionalOption>
+                    </additionalOptions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>nemoob</id>
+            <name>nemoob</name>
+            <email>yang_zhong_ren@aliyun.com</email>
+            <organizationUrl>https://github.com/nemoob</organizationUrl>
+        </developer>
+    </developers>
+
+    <!-- 更新distributionManagement -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <name>OSS Sonatype Snapshots</name>
+            <url>https://central.sonatype.com/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>OSS Sonatype Releases</name>
+            <url>https://central.sonatype.com/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
+
+</project>
