@@ -716,3 +716,31 @@ mvn spring-boot:run
 **如果这个项目对你有帮助，请给我们一个 ⭐️**
 
 </div>
+
+
+## 📊 项目统计
+
+### 基础统计
+![GitHub repo size](https://img.shields.io/github/repo-size/nemoob/atlas-chain?style=flat-square)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/nemoob/atlas-chain?style=flat-square)
+![Lines of code](https://img.shields.io/tokei/lines/github/nemoob/atlas-chain?style=flat-square)
+![GitHub language count](https://img.shields.io/github/languages/count/nemoob/atlas-chain?style=flat-square)
+![GitHub top language](https://img.shields.io/github/languages/top/nemoob/atlas-chain?style=flat-square)
+
+### 活跃度统计
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/nemoob/atlas-chain?style=flat-square)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/nemoob/atlas-chain?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/nemoob/atlas-chain?style=flat-square)
+![GitHub contributors](https://img.shields.io/github/contributors/nemoob/atlas-chain?style=flat-square)
+
+### 下载统计
+![GitHub all releases](https://img.shields.io/github/downloads/nemoob/atlas-chain/total?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/downloads/nemoob/atlas-chain/latest/total?style=flat-square)
+
+### 历史趋势
+![GitHub Repo stars](https://img.shields.io/github/stars/nemoob/atlas-chain?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/nemoob/atlas-chain?style=social)
+
+**Star History**
+
+[![Star History Chart](https://api.star-history.com/svg?repos=nemoob/atlas-chain&type=Date)](https://star-history.com/#nemoob/atlas-chain&Date)
