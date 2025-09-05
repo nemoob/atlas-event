@@ -2168,9 +2168,11 @@ Closes #123
 
 ## 📞 获取帮助
 
-- **GitHub Issues**: [报告问题](https://github.com/nemoob/atlas-event/issues)
-- **GitHub Discussions**: [讨论交流](https://github.com/nemoob/atlas-event/discussions)
 - **文档**: [在线文档](https://github.com/nemoob/atlas-event/wiki)
+
+## 📄 许可证
+
+本项目采用 [MIT License](LICENSE) 许可证。
 
 ---
 
