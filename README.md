@@ -661,7 +661,7 @@ mvn spring-boot:run
 
 ## 📄 许可证
 
-本项目采用 [Apache License 2.0](LICENSE) 许可证。
+本项目采用 [MIT License](LICENSE) 许可证。
 
 ## 🙏 致谢
 
@@ -670,8 +670,6 @@ mvn spring-boot:run
 ## 📞 联系我们
 
 - 项目主页: [https://github.com/nemoob/atlas-event](https://github.com/nemoob/atlas-event)
-- 问题反馈: [Issues](https://github.com/nemoob/atlas-event/issues)
-- 讨论交流: [Discussions](https://github.com/nemoob/atlas-event/discussions)
 
 ---
 
