@@ -263,7 +263,7 @@ public class AnnotationDemo {
 
 ## 4.6 注解处理流程
 
-![注解处理流程](/Users/nemoob/dev/workspace/qoder/atlas/atlas-event/docs/images/annotation-processing-flow.svg)
+![注解处理流程](images/annotation-processing-flow.svg)
 
 注解处理的流程如下：
 

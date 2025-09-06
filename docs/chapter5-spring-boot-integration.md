@@ -391,7 +391,7 @@ public class EventBusBridge implements EventListener {
 
 ## 5.10 Spring Boot集成的工作流程
 
-![Spring Boot集成工作流程](/Users/nemoob/dev/workspace/qoder/atlas/atlas-event/docs/images/spring-boot-integration-flow.svg)
+![Spring Boot集成工作流程](images/spring-boot-integration-flow.svg)
 
 Spring Boot集成的工作流程如下：
 
