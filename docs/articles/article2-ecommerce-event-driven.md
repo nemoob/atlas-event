@@ -2260,4 +2260,534 @@ public class EventPriorityProcessor {
 ```
 
 ## 7. 最佳实践与配置指南
+
+### 7.1 事件设计最佳实践
+
+#### 7.1.1 事件命名规范
+
+```java
+// 推荐：使用动词过去式 + 业务对象
+public class OrderCreatedEvent implements Event {
+    // 事件内容
+}
+
+public class PaymentProcessedEvent implements Event {
+    // 事件内容
+}
+
+public class InventoryReservedEvent implements Event {
+    // 事件内容
+}
+
+// 不推荐：使用现在时或不明确的命名
+public class OrderEvent implements Event { // 太泛化
+    // 事件内容
+}
+
+public class CreateOrder implements Event { // 使用现在时
+    // 事件内容
+}
+```
+
+#### 7.1.2 事件数据设计原则
+
+```java
+// 推荐：包含足够的上下文信息
+public class OrderCreatedEvent implements Event {
+    private final String orderId;
+    private final String userId;
+    private final BigDecimal totalAmount;
+    private final List<OrderItem> items;
+    private final String shippingAddress;
+    private final PaymentMethod paymentMethod;
+    private final long timestamp;
+    
+    // 构造函数和getter方法
+}
+
+// 不推荐：信息不足，需要额外查询
+public class OrderCreatedEvent implements Event {
+    private final String orderId; // 只有ID，缺少业务上下文
+    
+    // 构造函数和getter方法
+}
+```
+
+#### 7.1.3 事件版本管理
+
+```java
+// 版本化事件设计
+public class OrderCreatedEventV2 implements Event {
+    private final String version = "2.0";
+    private final String orderId;
+    private final String userId;
+    private final BigDecimal totalAmount;
+    private final List<OrderItem> items;
+    private final String shippingAddress;
+    private final PaymentMethod paymentMethod;
+    private final String promotionCode; // 新增字段
+    private final long timestamp;
+    
+    @Override
+    public String getType() {
+        return "order.created.v2";
+    }
+}
+
+// 向后兼容的事件处理
+@EventSubscribe(eventType = "order.created")
+public void handleOrderCreatedV1(OrderCreatedEvent event) {
+    // 处理V1版本事件
+}
+
+@EventSubscribe(eventType = "order.created.v2")
+public void handleOrderCreatedV2(OrderCreatedEventV2 event) {
+    // 处理V2版本事件
+}
+```
+
+### 7.2 性能优化配置
+
+#### 7.2.1 线程池配置
+
+```yaml
+# application.yml
+atlas:
+  event:
+    # 异步EventBus配置
+    event-bus:
+      type: adaptive
+      async:
+        core-pool-size: 10          # 核心线程数
+        max-pool-size: 50           # 最大线程数
+        queue-capacity: 1000        # 队列容量
+        keep-alive-seconds: 60      # 线程存活时间
+        thread-name-prefix: "atlas-event-"
+        
+      # 自适应线程池配置
+      adaptive:
+        core-pool-size: 8
+        max-pool-size: 32
+        target-utilization: 0.75    # 目标利用率
+        monitor-interval-seconds: 30
+        scale-up-threshold: 0.8     # 扩容阈值
+        scale-down-threshold: 0.3   # 缩容阈值
+        
+      # 多线程池配置
+      multi-thread:
+        default-pool-size: 10
+        pools:
+          order-events: 15          # 订单事件专用线程池
+          payment-events: 20        # 支付事件专用线程池
+          inventory-events: 10      # 库存事件专用线程池
+          notification-events: 5    # 通知事件专用线程池
+        priorities:
+          high: ["payment.processed", "order.cancelled"]
+          low: ["user.activity", "analytics.event"]
+```
+
+#### 7.2.2 批处理配置
+
+```yaml
+atlas:
+  event:
+    # 批处理配置
+    batch:
+      enabled: true
+      size: 100                     # 批处理大小
+      timeout-ms: 5000             # 批处理超时
+      max-wait-ms: 1000            # 最大等待时间
+      
+    # 持久化批处理
+    persistence:
+      batch-size: 200
+      flush-interval-ms: 3000
+      async-write: true
+```
+
+#### 7.2.3 内存优化配置
+
+```java
+@Configuration
+public class EventOptimizationConfig {
+    
+    @Bean
+    public EventObjectPool eventObjectPool() {
+        return EventObjectPool.builder()
+            .maxPoolSize(1000)          // 对象池最大大小
+            .initialSize(100)           // 初始大小
+            .maxIdleTime(300000)        // 最大空闲时间(5分钟)
+            .build();
+    }
+    
+    @Bean
+    public EventCache eventCache() {
+        return EventCache.builder()
+            .maxSize(10000)             // 缓存最大条目数
+            .expireAfterWrite(Duration.ofMinutes(30))
+            .expireAfterAccess(Duration.ofMinutes(10))
+            .build();
+    }
+}
+```
+
+### 7.3 监控与观测配置
+
+#### 7.3.1 指标收集配置
+
+```yaml
+atlas:
+  event:
+    monitoring:
+      enabled: true
+      metrics:
+        enabled: true
+        interval-seconds: 60
+        export-to-prometheus: true
+        export-to-influxdb: false
+        
+      # 自定义指标
+      custom-metrics:
+        - name: "order_processing_time"
+          type: "histogram"
+          event-types: ["order.created", "order.updated"]
+        - name: "payment_success_rate"
+          type: "counter"
+          event-types: ["payment.processed"]
+          
+      # 健康检查
+      health:
+        enabled: true
+        timeout-ms: 5000
+        check-interval-seconds: 30
+```
+
+#### 7.3.2 日志配置
+
+```yaml
+# logback-spring.xml
+logging:
+  level:
+    io.github.nemoob.event: INFO
+    org.springframework.context.event: WARN
+    
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{traceId}] %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{traceId}] %logger{36} - %msg%n"
+    
+  appenders:
+    event-appender:
+      type: RollingFileAppender
+      file: logs/atlas-event.log
+      max-file-size: 100MB
+      max-history: 30
+```
+
+#### 7.3.3 链路追踪配置
+
+```java
+@Component
+public class EventTracingInterceptor {
+    
+    @EventSubscribe(eventType = "*", priority = Integer.MAX_VALUE)
+    public void traceEvent(Event event) {
+        String traceId = generateTraceId();
+        MDC.put("traceId", traceId);
+        MDC.put("eventId", event.getId());
+        MDC.put("eventType", event.getType());
+        
+        try {
+            // 事件处理逻辑
+        } finally {
+            MDC.clear();
+        }
+    }
+    
+    private String generateTraceId() {
+        return UUID.randomUUID().toString().replace("-", "");
+    }
+}
+```
+
+### 7.4 安全配置
+
+#### 7.4.1 事件加密配置
+
+```yaml
+atlas:
+  event:
+    security:
+      encryption:
+        enabled: true
+        algorithm: "AES/GCM/NoPadding"
+        key-size: 256
+        key-source: "environment"    # environment, file, vault
+        key-rotation-days: 90
+        
+      # 敏感事件类型
+      sensitive-events:
+        - "payment.processed"
+        - "user.personal.updated"
+        - "order.payment.info"
+```
+
+#### 7.4.2 访问控制配置
+
+```java
+@Configuration
+@EnableEventSecurity
+public class EventSecurityConfig {
+    
+    @Bean
+    public EventAccessControl eventAccessControl() {
+        return EventAccessControl.builder()
+            .requireRole("payment.processed", "PAYMENT_PROCESSOR")
+            .requireRole("order.cancelled", "ORDER_MANAGER")
+            .requirePermission("user.personal.updated", "USER_DATA_ACCESS")
+            .build();
+    }
+    
+    @Bean
+    public EventAuditLogger eventAuditLogger() {
+        return new EventAuditLogger();
+    }
+}
+```
+
+### 7.5 容错与恢复配置
+
+#### 7.5.1 重试配置
+
+```yaml
+atlas:
+  event:
+    retry:
+      enabled: true
+      max-attempts: 3
+      initial-delay-ms: 1000
+      max-delay-ms: 30000
+      backoff-multiplier: 2.0
+      
+      # 按事件类型配置重试策略
+      strategies:
+        "payment.processed":
+          max-attempts: 5
+          initial-delay-ms: 2000
+        "notification.email":
+          max-attempts: 2
+          initial-delay-ms: 500
+          
+      # 重试条件
+      retry-on:
+        - "java.net.SocketTimeoutException"
+        - "org.springframework.dao.DataAccessException"
+        
+      # 不重试的异常
+      no-retry-on:
+        - "java.lang.IllegalArgumentException"
+        - "javax.validation.ValidationException"
+```
+
+#### 7.5.2 死信队列配置
+
+```java
+@Configuration
+public class DeadLetterQueueConfig {
+    
+    @Bean
+    public DeadLetterQueue deadLetterQueue() {
+        return DeadLetterQueue.builder()
+            .maxSize(10000)
+            .persistenceEnabled(true)
+            .retentionDays(7)
+            .alertThreshold(100)        // 超过100条时告警
+            .build();
+    }
+    
+    @Bean
+    public DeadLetterProcessor deadLetterProcessor() {
+        return new DeadLetterProcessor();
+    }
+}
+```
+
+### 7.6 环境特定配置
+
+#### 7.6.1 开发环境配置
+
+```yaml
+# application-dev.yml
+atlas:
+  event:
+    event-bus:
+      type: default                 # 使用同步EventBus便于调试
+    monitoring:
+      enabled: false               # 关闭监控减少日志
+    persistence:
+      enabled: false               # 关闭持久化加快启动
+    retry:
+      max-attempts: 1              # 减少重试加快测试
+    security:
+      encryption:
+        enabled: false             # 开发环境关闭加密
+```
+
+#### 7.6.2 测试环境配置
+
+```yaml
+# application-test.yml
+atlas:
+  event:
+    event-bus:
+      type: async
+      async:
+        core-pool-size: 2
+        max-pool-size: 5
+    monitoring:
+      enabled: true
+      metrics:
+        export-to-prometheus: false
+    persistence:
+      enabled: true
+      type: memory                 # 使用内存存储便于测试
+```
+
+#### 7.6.3 生产环境配置
+
+```yaml
+# application-prod.yml
+atlas:
+  event:
+    event-bus:
+      type: adaptive               # 使用自适应EventBus
+    monitoring:
+      enabled: true
+      metrics:
+        export-to-prometheus: true
+    persistence:
+      enabled: true
+      type: database
+    security:
+      encryption:
+        enabled: true
+    retry:
+      enabled: true
+    kafka:
+      enabled: true                # 启用分布式支持
+```
+
+### 7.7 部署配置
+
+#### 7.7.1 Docker配置
+
+```dockerfile
+# Dockerfile
+FROM openjdk:11-jre-slim
+
+# 设置JVM参数
+ENV JAVA_OPTS="-Xmx2g -Xms1g -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
+
+# 事件框架特定配置
+ENV ATLAS_EVENT_THREAD_POOL_SIZE=20
+ENV ATLAS_EVENT_MONITORING_ENABLED=true
+ENV ATLAS_EVENT_PERSISTENCE_TYPE=database
+
+COPY target/ecommerce-app.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+```
+
+#### 7.7.2 Kubernetes配置
+
+```yaml
+# k8s-deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-app
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+      - name: app
+        image: ecommerce-app:latest
+        env:
+        - name: ATLAS_EVENT_KAFKA_ENABLED
+          value: "true"
+        - name: ATLAS_EVENT_KAFKA_BOOTSTRAP_SERVERS
+          value: "kafka-cluster:9092"
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 30
+```
+
+### 7.8 故障排除指南
+
+#### 7.8.1 常见问题诊断
+
+```java
+// 事件处理延迟诊断
+@Component
+public class EventDiagnostics {
+    
+    @EventSubscribe(eventType = "*")
+    public void diagnoseEventProcessing(Event event) {
+        long processingTime = System.currentTimeMillis() - event.getTimestamp();
+        
+        if (processingTime > 5000) { // 超过5秒
+            log.warn("Slow event processing detected: {} took {}ms", 
+                event.getType(), processingTime);
+        }
+        
+        // 记录处理指标
+        Metrics.timer("event.processing.time", "type", event.getType())
+               .record(processingTime, TimeUnit.MILLISECONDS);
+    }
+}
+```
+
+#### 7.8.2 性能调优检查清单
+
+1. **线程池配置检查**
+   - 核心线程数是否合理（通常为CPU核心数）
+   - 最大线程数是否过大（避免上下文切换开销）
+   - 队列容量是否适当（避免内存溢出）
+
+2. **事件设计检查**
+   - 事件大小是否合理（避免过大的事件对象）
+   - 事件频率是否过高（考虑事件聚合）
+   - 订阅者数量是否合理（避免扇出过大）
+
+3. **持久化性能检查**
+   - 批处理配置是否启用
+   - 数据库连接池配置是否合理
+   - 索引是否正确创建
+
+### 7.9 小结
+
+本章提供了Atlas Event Framework在电商场景下的最佳实践和配置指南，涵盖了：
+
+- **事件设计**: 命名规范、数据设计、版本管理
+- **性能优化**: 线程池、批处理、内存优化
+- **监控观测**: 指标收集、日志配置、链路追踪
+- **安全配置**: 加密、访问控制、审计
+- **容错恢复**: 重试机制、死信队列
+- **环境配置**: 开发、测试、生产环境
+- **部署配置**: Docker、Kubernetes
+- **故障排除**: 诊断工具、性能调优
+
+遵循这些最佳实践，可以确保事件驱动架构在生产环境中稳定、高效地运行。
 ```
