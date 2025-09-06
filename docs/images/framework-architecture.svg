@@ -1,0 +1,142 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">事件框架整体架构图</text>
+  
+  <!-- 核心层 -->
+  <rect x="150" y="80" width="500" height="120" fill="#e8eaed" rx="10" ry="10" stroke="#dadce0" stroke-width="2"/>
+  <text x="400" y="100" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">核心接口层</text>
+  
+  <!-- 核心接口组件 -->
+  <rect x="170" y="120" width="100" height="60" fill="#4285f4" rx="8" ry="8" opacity="0.8"/>
+  <text x="220" y="155" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Event</text>
+  
+  <rect x="290" y="120" width="100" height="60" fill="#4285f4" rx="8" ry="8" opacity="0.8"/>
+  <text x="340" y="155" font-family="Arial" font-size="14" fill="white" text-anchor="middle">EventBus</text>
+  
+  <rect x="410" y="120" width="100" height="60" fill="#4285f4" rx="8" ry="8" opacity="0.8"/>
+  <text x="460" y="155" font-family="Arial" font-size="14" fill="white" text-anchor="middle">EventListener</text>
+  
+  <rect x="530" y="120" width="100" height="60" fill="#4285f4" rx="8" ry="8" opacity="0.8"/>
+  <text x="580" y="155" font-family="Arial" font-size="14" fill="white" text-anchor="middle">EventTypeResolver</text>
+  
+  <!-- 基础实现层 -->
+  <rect x="150" y="220" width="500" height="120" fill="#e8eaed" rx="10" ry="10" stroke="#dadce0" stroke-width="2"/>
+  <text x="400" y="240" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">基础实现层</text>
+  
+  <!-- 基础实现组件 -->
+  <rect x="170" y="260" width="100" height="60" fill="#ea4335" rx="8" ry="8" opacity="0.8"/>
+  <text x="220" y="280" font-family="Arial" font-size="12" fill="white" text-anchor="middle">AbstractEvent</text>
+  <text x="220" y="295" font-family="Arial" font-size="12" fill="white" text-anchor="middle">GenericEvent</text>
+  
+  <rect x="290" y="260" width="100" height="60" fill="#ea4335" rx="8" ry="8" opacity="0.8"/>
+  <text x="340" y="280" font-family="Arial" font-size="12" fill="white" text-anchor="middle">DefaultEventBus</text>
+  <text x="340" y="295" font-family="Arial" font-size="12" fill="white" text-anchor="middle">AsyncEventBus</text>
+  
+  <rect x="410" y="260" width="100" height="60" fill="#ea4335" rx="8" ry="8" opacity="0.8"/>
+  <text x="460" y="280" font-family="Arial" font-size="12" fill="white" text-anchor="middle">ListenerRegistry</text>
+  <text x="460" y="295" font-family="Arial" font-size="12" fill="white" text-anchor="middle">EventBusFactory</text>
+  
+  <rect x="530" y="260" width="100" height="60" fill="#ea4335" rx="8" ry="8" opacity="0.8"/>
+  <text x="580" y="280" font-family="Arial" font-size="12" fill="white" text-anchor="middle">DefaultTypeResolver</text>
+  <text x="580" y="295" font-family="Arial" font-size="12" fill="white" text-anchor="middle">CachingTypeResolver</text>
+  
+  <!-- 注解支持层 -->
+  <rect x="150" y="360" width="500" height="80" fill="#e8eaed" rx="10" ry="10" stroke="#dadce0" stroke-width="2"/>
+  <text x="400" y="380" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">注解支持层</text>
+  
+  <!-- 注解支持组件 -->
+  <rect x="170" y="400" width="140" height="30" fill="#fbbc05" rx="5" ry="5" opacity="0.8"/>
+  <text x="240" y="420" font-family="Arial" font-size="12" fill="white" text-anchor="middle">@EventSubscribe</text>
+  
+  <rect x="330" y="400" width="140" height="30" fill="#fbbc05" rx="5" ry="5" opacity="0.8"/>
+  <text x="400" y="420" font-family="Arial" font-size="12" fill="white" text-anchor="middle">EventAnnotationProcessor</text>
+  
+  <rect x="490" y="400" width="140" height="30" fill="#fbbc05" rx="5" ry="5" opacity="0.8"/>
+  <text x="560" y="420" font-family="Arial" font-size="12" fill="white" text-anchor="middle">@Priority</text>
+  
+  <!-- 框架集成层 -->
+  <rect x="150" y="460" width="500" height="80" fill="#e8eaed" rx="10" ry="10" stroke="#dadce0" stroke-width="2"/>
+  <text x="400" y="480" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">框架集成层</text>
+  
+  <!-- 框架集成组件 -->
+  <rect x="170" y="500" width="140" height="30" fill="#34a853" rx="5" ry="5" opacity="0.8"/>
+  <text x="240" y="520" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Spring Boot Starter</text>
+  
+  <rect x="330" y="500" width="140" height="30" fill="#34a853" rx="5" ry="5" opacity="0.8"/>
+  <text x="400" y="520" font-family="Arial" font-size="12" fill="white" text-anchor="middle">EventAutoConfiguration</text>
+  
+  <rect x="490" y="500" width="140" height="30" fill="#34a853" rx="5" ry="5" opacity="0.8"/>
+  <text x="560" y="520" font-family="Arial" font-size="12" fill="white" text-anchor="middle">EventListenerRegistrar</text>
+  
+  <!-- 高级特性层 -->
+  <rect x="50" y="560" width="700" height="30" fill="#e8eaed" rx="10" ry="10" stroke="#dadce0" stroke-width="2"/>
+  <text x="400" y="580" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">高级特性层</text>
+  
+  <!-- 高级特性组件 -->
+  <rect x="60" y="510" width="90" height="30" fill="#673ab7" rx="5" ry="5" opacity="0.8"/>
+  <text x="105" y="530" font-family="Arial" font-size="10" fill="white" text-anchor="middle">EventFilter</text>
+  
+  <rect x="60" y="470" width="90" height="30" fill="#673ab7" rx="5" ry="5" opacity="0.8"/>
+  <text x="105" y="490" font-family="Arial" font-size="10" fill="white" text-anchor="middle">EventInterceptor</text>
+  
+  <rect x="60" y="430" width="90" height="30" fill="#673ab7" rx="5" ry="5" opacity="0.8"/>
+  <text x="105" y="450" font-family="Arial" font-size="10" fill="white" text-anchor="middle">PropagatingEvent</text>
+  
+  <rect x="60" y="390" width="90" height="30" fill="#673ab7" rx="5" ry="5" opacity="0.8"/>
+  <text x="105" y="410" font-family="Arial" font-size="10" fill="white" text-anchor="middle">MetricsCollector</text>
+  
+  <rect x="60" y="350" width="90" height="30" fill="#673ab7" rx="5" ry="5" opacity="0.8"/>
+  <text x="105" y="370" font-family="Arial" font-size="10" fill="white" text-anchor="middle">DistributedEventBus</text>
+  
+  <rect x="60" y="310" width="90" height="30" fill="#673ab7" rx="5" ry="5" opacity="0.8"/>
+  <text x="105" y="330" font-family="Arial" font-size="10" fill="white" text-anchor="middle">EventSourcing</text>
+  
+  <rect x="60" y="270" width="90" height="30" fill="#673ab7" rx="5" ry="5" opacity="0.8"/>
+  <text x="105" y="290" font-family="Arial" font-size="10" fill="white" text-anchor="middle">EventReplay</text>
+  
+  <!-- 连接线 -->
+  <!-- 核心接口到基础实现 -->
+  <line x1="220" y1="180" x2="220" y2="260" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="340" y1="180" x2="340" y2="260" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="460" y1="180" x2="460" y2="260" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="580" y1="180" x2="580" y2="260" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- 基础实现到注解支持 -->
+  <line x1="340" y1="320" x2="340" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="460" y1="320" x2="400" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- 注解支持到框架集成 -->
+  <line x1="240" y1="430" x2="240" y2="500" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="400" y1="430" x2="400" y2="500" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- 高级特性连接 -->
+  <line x1="105" y1="270" x2="170" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="105" y1="310" x2="170" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="105" y1="350" x2="290" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="105" y1="390" x2="290" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="105" y1="430" x2="170" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="105" y1="470" x2="290" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="105" y1="510" x2="290" y2="150" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- 图例 -->
+  <rect x="650" y="270" width="120" height="120" fill="#f1f3f4" rx="5" ry="5" stroke="#dadce0" stroke-width="1"/>
+  <text x="710" y="290" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">图例</text>
+  
+  <rect x="660" y="310" width="20" height="10" fill="#4285f4" opacity="0.8"/>
+  <text x="710" y="320" font-family="Arial" font-size="10" text-anchor="middle">核心接口</text>
+  
+  <rect x="660" y="330" width="20" height="10" fill="#ea4335" opacity="0.8"/>
+  <text x="710" y="340" font-family="Arial" font-size="10" text-anchor="middle">基础实现</text>
+  
+  <rect x="660" y="350" width="20" height="10" fill="#fbbc05" opacity="0.8"/>
+  <text x="710" y="360" font-family="Arial" font-size="10" text-anchor="middle">注解支持</text>
+  
+  <rect x="660" y="370" width="20" height="10" fill="#34a853" opacity="0.8"/>
+  <text x="710" y="380" font-family="Arial" font-size="10" text-anchor="middle">框架集成</text>
+  
+  <rect x="660" y="390" width="20" height="10" fill="#673ab7" opacity="0.8"/>
+  <text x="710" y="400" font-family="Arial" font-size="10" text-anchor="middle">高级特性</text>
+</svg>

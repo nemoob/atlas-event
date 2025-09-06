@@ -1,0 +1,110 @@
+<svg width="800" height="550" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="550" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">异步事件处理流程</text>
+  
+  <!-- 组件 -->
+  <!-- 发布者 -->
+  <rect x="100" y="100" width="150" height="60" fill="#4285f4" rx="10" ry="10" opacity="0.8"/>
+  <text x="175" y="135" font-family="Arial" font-size="16" fill="white" text-anchor="middle">发布者</text>
+  
+  <!-- 事件总线 -->
+  <rect x="325" y="100" width="150" height="60" fill="#ea4335" rx="10" ry="10" opacity="0.8"/>
+  <text x="400" y="135" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件总线</text>
+  
+  <!-- 监听器注册表 -->
+  <rect x="550" y="100" width="150" height="60" fill="#fbbc05" rx="10" ry="10" opacity="0.8"/>
+  <text x="625" y="135" font-family="Arial" font-size="16" fill="white" text-anchor="middle">监听器注册表</text>
+  
+  <!-- 线程池 -->
+  <rect x="325" y="220" width="150" height="60" fill="#673ab7" rx="10" ry="10" opacity="0.8"/>
+  <text x="400" y="255" font-family="Arial" font-size="16" fill="white" text-anchor="middle">线程池</text>
+  
+  <!-- 监听器1 -->
+  <rect x="250" y="350" width="150" height="60" fill="#34a853" rx="10" ry="10" opacity="0.8"/>
+  <text x="325" y="385" font-family="Arial" font-size="16" fill="white" text-anchor="middle">监听器 1</text>
+  <text x="325" y="405" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(异步)</text>
+  
+  <!-- 监听器2 -->
+  <rect x="450" y="350" width="150" height="60" fill="#34a853" rx="10" ry="10" opacity="0.8"/>
+  <text x="525" y="385" font-family="Arial" font-size="16" fill="white" text-anchor="middle">监听器 2</text>
+  <text x="525" y="405" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(异步)</text>
+  
+  <!-- 流程步骤 -->
+  <!-- 步骤1：发布事件 -->
+  <line x1="250" y1="130" x2="325" y2="130" stroke="#333" stroke-width="2"/>
+  <polygon points="320,125 330,135 325,130" fill="#333"/>
+  <circle cx="290" y="130" r="15" fill="#4285f4" opacity="0.8"/>
+  <text x="290" y="135" font-family="Arial" font-size="12" fill="white" text-anchor="middle">1</text>
+  <text x="290" y="110" font-family="Arial" font-size="12" text-anchor="middle">publish(event)</text>
+  
+  <!-- 步骤2：查找监听器 -->
+  <line x1="475" y1="130" x2="550" y2="130" stroke="#333" stroke-width="2"/>
+  <polygon points="545,125 555,135 550,130" fill="#333"/>
+  <circle cx="510" y="130" r="15" fill="#ea4335" opacity="0.8"/>
+  <text x="510" y="135" font-family="Arial" font-size="12" fill="white" text-anchor="middle">2</text>
+  <text x="510" y="110" font-family="Arial" font-size="12" text-anchor="middle">查找监听器</text>
+  
+  <!-- 步骤3：返回监听器列表 -->
+  <line x1="550" y1="160" x2="475" y2="160" stroke="#333" stroke-width="2"/>
+  <polygon points="480,155 470,165 475,160" fill="#333"/>
+  <circle cx="510" y="160" r="15" fill="#fbbc05" opacity="0.8"/>
+  <text x="510" y="165" font-family="Arial" font-size="12" fill="white" text-anchor="middle">3</text>
+  <text x="510" y="180" font-family="Arial" font-size="12" text-anchor="middle">返回监听器列表</text>
+  
+  <!-- 步骤4：提交任务到线程池 -->
+  <line x1="400" y1="160" x2="400" y2="220" stroke="#333" stroke-width="2"/>
+  <polygon points="395,215 405,215 400,220" fill="#333"/>
+  <circle cx="400" y="190" r="15" fill="#ea4335" opacity="0.8"/>
+  <text x="400" y="195" font-family="Arial" font-size="12" fill="white" text-anchor="middle">4</text>
+  <text x="450" y="190" font-family="Arial" font-size="12" text-anchor="middle">提交异步任务</text>
+  
+  <!-- 步骤5：立即返回 -->
+  <line x1="325" y1="130" x2="250" y2="130" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="255,125 245,135 250,130" fill="#333"/>
+  <circle cx="290" y="160" r="15" fill="#ea4335" opacity="0.8"/>
+  <text x="290" y="165" font-family="Arial" font-size="12" fill="white" text-anchor="middle">5</text>
+  <text x="290" y="180" font-family="Arial" font-size="12" text-anchor="middle">立即返回</text>
+  
+  <!-- 步骤6：线程池分配线程处理监听器1 -->
+  <line x1="325" y1="280" x2="325" y2="350" stroke="#333" stroke-width="2"/>
+  <polygon points="320,345 330,345 325,350" fill="#333"/>
+  <circle cx="325" y="315" r="15" fill="#673ab7" opacity="0.8"/>
+  <text x="325" y="320" font-family="Arial" font-size="12" fill="white" text-anchor="middle">6</text>
+  <text x="270" y="315" font-family="Arial" font-size="12" text-anchor="middle">分配线程</text>
+  
+  <!-- 步骤7：线程池分配线程处理监听器2 -->
+  <line x1="475" y1="280" x2="475" y2="350" stroke="#333" stroke-width="2"/>
+  <polygon points="470,345 480,345 475,350" fill="#333"/>
+  <circle cx="475" y="315" r="15" fill="#673ab7" opacity="0.8"/>
+  <text x="475" y="320" font-family="Arial" font-size="12" fill="white" text-anchor="middle">7</text>
+  <text x="530" y="315" font-family="Arial" font-size="12" text-anchor="middle">分配线程</text>
+  
+  <!-- 步骤8：监听器1处理完成 -->
+  <line x1="325" y1="410" x2="325" y2="450" stroke="#333" stroke-width="2"/>
+  <circle cx="325" y="430" r="15" fill="#34a853" opacity="0.8"/>
+  <text x="325" y="435" font-family="Arial" font-size="12" fill="white" text-anchor="middle">8</text>
+  <text x="270" y="430" font-family="Arial" font-size="12" text-anchor="middle">处理完成</text>
+  
+  <!-- 步骤9：监听器2处理完成 -->
+  <line x1="525" y1="410" x2="525" y2="450" stroke="#333" stroke-width="2"/>
+  <circle cx="525" y="430" r="15" fill="#34a853" opacity="0.8"/>
+  <text x="525" y="435" font-family="Arial" font-size="12" fill="white" text-anchor="middle">9</text>
+  <text x="580" y="430" font-family="Arial" font-size="12" text-anchor="middle">处理完成</text>
+  
+  <!-- 发布者继续执行 -->
+  <rect x="100" y="200" width="150" height="60" fill="#4285f4" rx="10" ry="10" opacity="0.6"/>
+  <text x="175" y="235" font-family="Arial" font-size="16" fill="white" text-anchor="middle">继续执行</text>
+  <line x1="175" y1="160" x2="175" y2="200" stroke="#333" stroke-width="2"/>
+  <polygon points="170,195 180,195 175,200" fill="#333"/>
+  
+  <!-- 并行处理标记 -->
+  <rect x="250" y="450" width="350" height="40" fill="#673ab7" opacity="0.2" rx="5" ry="5"/>
+  <text x="425" y="475" font-family="Arial" font-size="14" text-anchor="middle">监听器在不同线程中并行处理事件</text>
+  
+  <!-- 底部说明 -->
+  <text x="400" y="520" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">异步事件处理中，发布者线程不会等待监听器处理完成，立即返回继续执行</text>
+  <text x="400" y="540" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">事件处理在线程池的独立线程中异步进行</text>
+</svg>

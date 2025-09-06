@@ -1,0 +1,118 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">事件框架高级特性工作流程</text>
+  
+  <!-- 主要组件 -->
+  <rect x="50" y="80" width="700" height="480" fill="#e8eaed" rx="10" ry="10" stroke="#dadce0" stroke-width="2"/>
+  
+  <!-- 事件发布者 -->
+  <rect x="100" y="120" width="120" height="60" fill="#4285f4" rx="8" ry="8" opacity="0.8"/>
+  <text x="160" y="155" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件发布者</text>
+  
+  <!-- 事件总线 -->
+  <rect x="340" y="120" width="120" height="60" fill="#ea4335" rx="8" ry="8" opacity="0.8"/>
+  <text x="400" y="155" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件总线</text>
+  
+  <!-- 事件拦截器 -->
+  <rect x="340" y="220" width="120" height="60" fill="#fbbc05" rx="8" ry="8" opacity="0.8"/>
+  <text x="400" y="255" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件拦截器</text>
+  
+  <!-- 事件过滤器 -->
+  <rect x="340" y="320" width="120" height="60" fill="#34a853" rx="8" ry="8" opacity="0.8"/>
+  <text x="400" y="355" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件过滤器</text>
+  
+  <!-- 监听器注册表 -->
+  <rect x="340" y="420" width="120" height="60" fill="#673ab7" rx="8" ry="8" opacity="0.8"/>
+  <text x="400" y="455" font-family="Arial" font-size="16" fill="white" text-anchor="middle">监听器注册表</text>
+  
+  <!-- 事件监听器 -->
+  <rect x="580" y="320" width="120" height="60" fill="#ff6d01" rx="8" ry="8" opacity="0.8"/>
+  <text x="640" y="355" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件监听器</text>
+  
+  <!-- 流程箭头 -->
+  <!-- 1. 发布者到事件总线 -->
+  <line x1="220" y1="150" x2="340" y2="150" stroke="#333" stroke-width="2"/>
+  <polygon points="335,145 345,150 335,155" fill="#333"/>
+  <circle cx="280" y="150" r="15" fill="#4285f4" opacity="0.8"/>
+  <text x="280" y="155" font-family="Arial" font-size="12" fill="white" text-anchor="middle">1</text>
+  
+  <!-- 2. 事件总线到拦截器 -->
+  <line x1="400" y1="180" x2="400" y2="220" stroke="#333" stroke-width="2"/>
+  <polygon points="395,215 405,215 400,220" fill="#333"/>
+  <circle cx="400" y="200" r="15" fill="#ea4335" opacity="0.8"/>
+  <text x="400" y="205" font-family="Arial" font-size="12" fill="white" text-anchor="middle">2</text>
+  
+  <!-- 3. 拦截器到过滤器 -->
+  <line x1="400" y1="280" x2="400" y2="320" stroke="#333" stroke-width="2"/>
+  <polygon points="395,315 405,315 400,320" fill="#333"/>
+  <circle cx="400" y="300" r="15" fill="#fbbc05" opacity="0.8"/>
+  <text x="400" y="305" font-family="Arial" font-size="12" fill="white" text-anchor="middle">3</text>
+  
+  <!-- 4. 过滤器到注册表 -->
+  <line x1="400" y1="380" x2="400" y2="420" stroke="#333" stroke-width="2"/>
+  <polygon points="395,415 405,415 400,420" fill="#333"/>
+  <circle cx="400" y="400" r="15" fill="#34a853" opacity="0.8"/>
+  <text x="400" y="405" font-family="Arial" font-size="12" fill="white" text-anchor="middle">4</text>
+  
+  <!-- 5. 注册表到监听器 -->
+  <line x1="460" y1="450" x2="580" y2="350" stroke="#333" stroke-width="2"/>
+  <polygon points="575,355 585,345 580,350" fill="#333"/>
+  <circle cx="520" y="400" r="15" fill="#673ab7" opacity="0.8"/>
+  <text x="520" y="405" font-family="Arial" font-size="12" fill="white" text-anchor="middle">5</text>
+  
+  <!-- 拦截点和控制流 -->
+  <!-- 拦截器拦截点 -->
+  <line x1="460" y1="250" x2="520" y2="250" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="490" y="240" font-family="Arial" font-size="12" text-anchor="middle">beforePublish</text>
+  
+  <!-- 过滤器拦截点 -->
+  <line x1="460" y1="350" x2="520" y2="350" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="490" y="340" font-family="Arial" font-size="12" text-anchor="middle">shouldDeliver</text>
+  
+  <!-- 事件传播控制 -->
+  <path d="M 640 320 C 640 280 580 280 580 320" stroke="#333" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  <text x="610" y="290" font-family="Arial" font-size="12" text-anchor="middle">stopPropagation</text>
+  
+  <!-- 优先级排序 -->
+  <rect x="500" y="420" width="200" height="60" fill="#f1f3f4" rx="5" ry="5" stroke="#dadce0" stroke-width="1"/>
+  <text x="600" y="440" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">监听器优先级排序</text>
+  <text x="600" y="460" font-family="Arial" font-size="10" text-anchor="middle">@Priority(1) → @Priority(2) → @Priority(3)</text>
+  
+  <!-- 说明框 -->
+  <rect x="100" y="200" width="200" height="280" fill="#f1f3f4" rx="5" ry="5" stroke="#dadce0" stroke-width="1"/>
+  <text x="200" y="220" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">高级特性说明</text>
+  
+  <text x="110" y="250" font-family="Arial" font-size="12">1. 事件拦截器</text>
+  <text x="120" y="270" font-family="Arial" font-size="10">- beforePublish: 发布前拦截</text>
+  <text x="120" y="290" font-family="Arial" font-size="10">- beforeInvoke: 调用前拦截</text>
+  <text x="120" y="310" font-family="Arial" font-size="10">- afterInvoke: 调用后处理</text>
+  <text x="120" y="330" font-family="Arial" font-size="10">- afterComplete: 完成后处理</text>
+  
+  <text x="110" y="360" font-family="Arial" font-size="12">2. 事件过滤器</text>
+  <text x="120" y="380" font-family="Arial" font-size="10">- 属性过滤: 基于事件属性</text>
+  <text x="120" y="400" font-family="Arial" font-size="10">- 类型过滤: 基于事件类型</text>
+  
+  <text x="110" y="430" font-family="Arial" font-size="12">3. 事件传播控制</text>
+  <text x="120" y="450" font-family="Arial" font-size="10">- stopPropagation: 停止传播</text>
+  <text x="120" y="470" font-family="Arial" font-size="10">- 控制监听器执行顺序</text>
+  
+  <!-- 性能优化部分 -->
+  <rect x="500" y="120" width="200" height="160" fill="#f1f3f4" rx="5" ry="5" stroke="#dadce0" stroke-width="1"/>
+  <text x="600" y="140" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">性能优化技术</text>
+  
+  <text x="510" y="165" font-family="Arial" font-size="12">1. 缓存机制</text>
+  <text x="520" y="185" font-family="Arial" font-size="10">- 事件类型解析缓存</text>
+  <text x="520" y="205" font-family="Arial" font-size="10">- 注解方法缓存</text>
+  
+  <text x="510" y="225" font-family="Arial" font-size="12">2. 批量事件处理</text>
+  <text x="520" y="245" font-family="Arial" font-size="10">- postAll方法批量发布</text>
+  
+  <text x="510" y="265" font-family="Arial" font-size="12">3. 线程池优化</text>
+  <text x="520" y="285" font-family="Arial" font-size="10">- 自定义线程池配置</text>
+  
+  <!-- 底部说明 -->
+  <text x="400" y="580" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">实线表示事件流，虚线表示控制流</text>
+</svg>

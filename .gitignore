@@ -98,7 +98,7 @@ Desktop.ini
 *.pid.lock
 
 # Project specific
-docs/
+# docs/ - removed to allow documentation files
 code/
 .qoder/
 

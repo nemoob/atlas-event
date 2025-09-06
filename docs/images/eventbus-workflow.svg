@@ -1,0 +1,98 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">事件总线工作流程</text>
+  
+  <!-- 组件 -->
+  <!-- 监听器 -->
+  <rect x="100" y="100" width="150" height="60" fill="#34a853" rx="10" ry="10" opacity="0.8"/>
+  <text x="175" y="135" font-family="Arial" font-size="16" fill="white" text-anchor="middle">监听器</text>
+  
+  <!-- 事件总线 -->
+  <rect x="325" y="250" width="150" height="60" fill="#ea4335" rx="10" ry="10" opacity="0.8"/>
+  <text x="400" y="285" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件总线</text>
+  
+  <!-- 监听器注册表 -->
+  <rect x="550" y="100" width="150" height="60" fill="#fbbc05" rx="10" ry="10" opacity="0.8"/>
+  <text x="625" y="135" font-family="Arial" font-size="16" fill="white" text-anchor="middle">监听器注册表</text>
+  
+  <!-- 发布者 -->
+  <rect x="100" y="400" width="150" height="60" fill="#4285f4" rx="10" ry="10" opacity="0.8"/>
+  <text x="175" y="435" font-family="Arial" font-size="16" fill="white" text-anchor="middle">发布者</text>
+  
+  <!-- 事件类型解析器 -->
+  <rect x="550" y="400" width="150" height="60" fill="#673ab7" rx="10" ry="10" opacity="0.8"/>
+  <text x="625" y="435" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件类型解析器</text>
+  
+  <!-- 流程步骤 -->
+  <!-- 步骤1：监听器注册 -->
+  <line x1="175" y1="160" x2="325" y2="250" stroke="#333" stroke-width="2"/>
+  <polygon points="320,245 330,255 325,250" fill="#333"/>
+  <circle cx="250" y="205" r="15" fill="#34a853" opacity="0.8"/>
+  <text x="250" y="210" font-family="Arial" font-size="12" fill="white" text-anchor="middle">1</text>
+  <text x="250" y="185" font-family="Arial" font-size="12" text-anchor="middle">register(eventType, listener)</text>
+  
+  <!-- 步骤2：存储监听器 -->
+  <line x1="475" y1="250" x2="625" y2="160" stroke="#333" stroke-width="2"/>
+  <polygon points="620,165 630,155 625,160" fill="#333"/>
+  <circle cx="550" y="205" r="15" fill="#ea4335" opacity="0.8"/>
+  <text x="550" y="210" font-family="Arial" font-size="12" fill="white" text-anchor="middle">2</text>
+  <text x="550" y="185" font-family="Arial" font-size="12" text-anchor="middle">存储监听器</text>
+  
+  <!-- 步骤3：发布事件 -->
+  <line x1="175" y1="400" x2="325" y2="310" stroke="#333" stroke-width="2"/>
+  <polygon points="320,315 330,305 325,310" fill="#333"/>
+  <circle cx="250" y="355" r="15" fill="#4285f4" opacity="0.8"/>
+  <text x="250" y="360" font-family="Arial" font-size="12" fill="white" text-anchor="middle">3</text>
+  <text x="250" y="335" font-family="Arial" font-size="12" text-anchor="middle">publish(event)</text>
+  
+  <!-- 步骤4：解析事件类型 -->
+  <line x1="475" y1="310" x2="625" y2="400" stroke="#333" stroke-width="2"/>
+  <polygon points="620,395 630,405 625,400" fill="#333"/>
+  <circle cx="550" y="355" r="15" fill="#ea4335" opacity="0.8"/>
+  <text x="550" y="360" font-family="Arial" font-size="12" fill="white" text-anchor="middle">4</text>
+  <text x="550" y="335" font-family="Arial" font-size="12" text-anchor="middle">解析事件类型</text>
+  
+  <!-- 步骤5：返回事件类型 -->
+  <line x1="625" y1="400" x2="475" y2="310" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="480,315 470,305 475,310" fill="#333"/>
+  <circle cx="550" y="375" r="15" fill="#673ab7" opacity="0.8"/>
+  <text x="550" y="380" font-family="Arial" font-size="12" fill="white" text-anchor="middle">5</text>
+  <text x="550" y="395" font-family="Arial" font-size="12" text-anchor="middle">返回事件类型</text>
+  
+  <!-- 步骤6：查找监听器 -->
+  <line x1="475" y1="250" x2="625" y2="160" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="620,165 630,155 625,160" fill="#333"/>
+  <circle cx="550" y="225" r="15" fill="#ea4335" opacity="0.8"/>
+  <text x="550" y="230" font-family="Arial" font-size="12" fill="white" text-anchor="middle">6</text>
+  <text x="550" y="245" font-family="Arial" font-size="12" text-anchor="middle">查找监听器</text>
+  
+  <!-- 步骤7：返回监听器列表 -->
+  <line x1="625" y1="160" x2="475" y2="250" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="480,245 470,255 475,250" fill="#333"/>
+  <circle cx="550" y="185" r="15" fill="#fbbc05" opacity="0.8"/>
+  <text x="550" y="190" font-family="Arial" font-size="12" fill="white" text-anchor="middle">7</text>
+  <text x="550" y="165" font-family="Arial" font-size="12" text-anchor="middle">返回监听器列表</text>
+  
+  <!-- 步骤8：分发事件 -->
+  <line x1="325" y1="250" x2="175" y2="160" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="180,165 170,155 175,160" fill="#333"/>
+  <circle cx="250" y="225" r="15" fill="#ea4335" opacity="0.8"/>
+  <text x="250" y="230" font-family="Arial" font-size="12" fill="white" text-anchor="middle">8</text>
+  <text x="250" y="245" font-family="Arial" font-size="12" text-anchor="middle">分发事件</text>
+  
+  <!-- 步骤9：处理事件 -->
+  <rect x="100" y="500" width="150" height="60" fill="#34a853" rx="10" ry="10" opacity="0.6"/>
+  <text x="175" y="535" font-family="Arial" font-size="16" fill="white" text-anchor="middle">处理事件</text>
+  <line x1="175" y1="160" x2="175" y2="500" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="170,495 180,495 175,500" fill="#333"/>
+  <circle cx="175" y="330" r="15" fill="#34a853" opacity="0.8"/>
+  <text x="175" y="335" font-family="Arial" font-size="12" fill="white" text-anchor="middle">9</text>
+  <text x="125" y="330" font-family="Arial" font-size="12" text-anchor="middle">onEvent(event)</text>
+  
+  <!-- 底部说明 -->
+  <rect x="100" y="570" width="600" height="20" fill="none"/>
+  <text x="400" y="585" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">实线表示请求流，虚线表示响应流</text>
+</svg>

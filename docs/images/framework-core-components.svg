@@ -1,0 +1,64 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">事件框架核心组件</text>
+  
+  <!-- 事件接口 -->
+  <rect x="100" y="100" width="200" height="100" fill="#4285f4" rx="10" ry="10" opacity="0.8"/>
+  <text x="200" y="145" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">Event</text>
+  <text x="200" y="170" font-family="Arial" font-size="12" fill="white" text-anchor="middle">事件接口</text>
+  <text x="200" y="190" font-family="Arial" font-size="10" fill="white" text-anchor="middle">定义事件的基本属性和方法</text>
+  
+  <!-- 事件总线接口 -->
+  <rect x="500" y="100" width="200" height="100" fill="#ea4335" rx="10" ry="10" opacity="0.8"/>
+  <text x="600" y="145" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">EventBus</text>
+  <text x="600" y="170" font-family="Arial" font-size="12" fill="white" text-anchor="middle">事件总线接口</text>
+  <text x="600" y="190" font-family="Arial" font-size="10" fill="white" text-anchor="middle">负责事件的发布和订阅管理</text>
+  
+  <!-- 事件监听器接口 -->
+  <rect x="100" y="300" width="200" height="100" fill="#34a853" rx="10" ry="10" opacity="0.8"/>
+  <text x="200" y="345" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">EventListener</text>
+  <text x="200" y="370" font-family="Arial" font-size="12" fill="white" text-anchor="middle">事件监听器接口</text>
+  <text x="200" y="390" font-family="Arial" font-size="10" fill="white" text-anchor="middle">定义事件处理方法</text>
+  
+  <!-- 事件注解 -->
+  <rect x="500" y="300" width="200" height="100" fill="#fbbc05" rx="10" ry="10" opacity="0.8"/>
+  <text x="600" y="345" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">@EventSubscribe</text>
+  <text x="600" y="370" font-family="Arial" font-size="12" fill="white" text-anchor="middle">事件订阅注解</text>
+  <text x="600" y="390" font-family="Arial" font-size="10" fill="white" text-anchor="middle">简化事件监听器的注册</text>
+  
+  <!-- 连接线 -->
+  <!-- Event到EventBus -->
+  <line x1="300" y1="150" x2="500" y2="150" stroke="#333" stroke-width="2"/>
+  <polygon points="495,145 505,150 495,155" fill="#333"/>
+  <text x="400" y="140" font-family="Arial" font-size="12" text-anchor="middle">发布</text>
+  
+  <!-- EventBus到EventListener -->
+  <line x1="500" y1="200" x2="300" y2="300" stroke="#333" stroke-width="2"/>
+  <polygon points="305,295 295,305 300,300" fill="#333"/>
+  <text x="400" y="260" font-family="Arial" font-size="12" text-anchor="middle">分发事件</text>
+  
+  <!-- EventListener到Event -->
+  <line x1="200" y1="300" x2="200" y2="200" stroke="#333" stroke-width="2"/>
+  <polygon points="195,205 205,205 200,200" fill="#333"/>
+  <text x="170" y="250" font-family="Arial" font-size="12" text-anchor="middle">处理</text>
+  
+  <!-- EventSubscribe到EventBus -->
+  <line x1="600" y1="300" x2="600" y2="200" stroke="#333" stroke-width="2"/>
+  <polygon points="595,205 605,205 600,200" fill="#333"/>
+  <text x="630" y="250" font-family="Arial" font-size="12" text-anchor="middle">注册</text>
+  
+  <!-- 实现类 -->
+  <rect x="100" y="220" width="200" height="30" fill="#4285f4" rx="5" ry="5" opacity="0.5"/>
+  <text x="200" y="240" font-family="Arial" font-size="12" text-anchor="middle">AbstractEvent / GenericEvent</text>
+  
+  <rect x="500" y="220" width="200" height="30" fill="#ea4335" rx="5" ry="5" opacity="0.5"/>
+  <text x="600" y="240" font-family="Arial" font-size="12" text-anchor="middle">DefaultEventBus</text>
+  
+  <!-- 底部说明 -->
+  <rect x="100" y="430" width="600" height="50" fill="white" stroke="#333" stroke-width="1" rx="5" ry="5"/>
+  <text x="400" y="455" font-family="Arial" font-size="14" text-anchor="middle">框架核心组件通过接口定义和依赖注入实现松耦合</text>
+  <text x="400" y="475" font-family="Arial" font-size="14" text-anchor="middle">可以根据需要替换各组件的具体实现</text>
+</svg>

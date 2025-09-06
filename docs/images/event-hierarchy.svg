@@ -1,0 +1,87 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">事件层次结构</text>
+  
+  <!-- Event接口 -->
+  <rect x="300" y="80" width="200" height="60" fill="#4285f4" rx="10" ry="10" opacity="0.8"/>
+  <text x="400" y="115" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">Event</text>
+  <text x="400" y="135" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(接口)</text>
+  
+  <!-- AbstractEvent类 -->
+  <rect x="300" y="180" width="200" height="60" fill="#4285f4" rx="10" ry="10" opacity="0.7"/>
+  <text x="400" y="215" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">AbstractEvent</text>
+  <text x="400" y="235" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(抽象类)</text>
+  
+  <!-- GenericEvent类 -->
+  <rect x="100" y="280" width="200" height="60" fill="#4285f4" rx="10" ry="10" opacity="0.6"/>
+  <text x="200" y="315" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">GenericEvent</text>
+  <text x="200" y="335" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(通用事件实现)</text>
+  
+  <!-- OrderEvent类 -->
+  <rect x="500" y="280" width="200" height="60" fill="#ea4335" rx="10" ry="10" opacity="0.8"/>
+  <text x="600" y="315" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">OrderEvent</text>
+  <text x="600" y="335" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(订单事件基类)</text>
+  
+  <!-- OrderCreatedEvent类 -->
+  <rect x="400" y="380" width="200" height="60" fill="#ea4335" rx="10" ry="10" opacity="0.7"/>
+  <text x="500" y="415" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">OrderCreatedEvent</text>
+  <text x="500" y="435" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(订单创建事件)</text>
+  
+  <!-- OrderPaidEvent类 -->
+  <rect x="620" y="380" width="200" height="60" fill="#ea4335" rx="10" ry="10" opacity="0.7"/>
+  <text x="720" y="415" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">OrderPaidEvent</text>
+  <text x="720" y="435" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(订单支付事件)</text>
+  
+  <!-- UserEvent类 -->
+  <rect x="-20" y="380" width="200" height="60" fill="#34a853" rx="10" ry="10" opacity="0.8"/>
+  <text x="80" y="415" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">UserEvent</text>
+  <text x="80" y="435" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(用户事件基类)</text>
+  
+  <!-- UserRegisteredEvent类 -->
+  <rect x="-20" y="460" width="200" height="60" fill="#34a853" rx="10" ry="10" opacity="0.7"/>
+  <text x="80" y="495" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">UserRegisteredEvent</text>
+  <text x="80" y="515" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(用户注册事件)</text>
+  
+  <!-- 连接线 -->
+  <!-- Event到AbstractEvent -->
+  <line x1="400" y1="140" x2="400" y2="180" stroke="#333" stroke-width="2"/>
+  <polygon points="395,175 405,175 400,180" fill="#333"/>
+  <text x="420" y="160" font-family="Arial" font-size="12" text-anchor="start">实现</text>
+  
+  <!-- AbstractEvent到GenericEvent -->
+  <line x1="400" y1="240" x2="200" y2="280" stroke="#333" stroke-width="2"/>
+  <polygon points="205,275 195,285 200,280" fill="#333"/>
+  <text x="280" y="250" font-family="Arial" font-size="12" text-anchor="middle">继承</text>
+  
+  <!-- AbstractEvent到OrderEvent -->
+  <line x1="400" y1="240" x2="600" y2="280" stroke="#333" stroke-width="2"/>
+  <polygon points="595,275 605,285 600,280" fill="#333"/>
+  <text x="520" y="250" font-family="Arial" font-size="12" text-anchor="middle">继承</text>
+  
+  <!-- OrderEvent到OrderCreatedEvent -->
+  <line x1="600" y1="340" x2="500" y2="380" stroke="#333" stroke-width="2"/>
+  <polygon points="505,375 495,385 500,380" fill="#333"/>
+  <text x="530" y="350" font-family="Arial" font-size="12" text-anchor="middle">继承</text>
+  
+  <!-- OrderEvent到OrderPaidEvent -->
+  <line x1="600" y1="340" x2="720" y2="380" stroke="#333" stroke-width="2"/>
+  <polygon points="715,375 725,385 720,380" fill="#333"/>
+  <text x="680" y="350" font-family="Arial" font-size="12" text-anchor="middle">继承</text>
+  
+  <!-- AbstractEvent到UserEvent -->
+  <line x1="300" y1="210" x2="80" y2="380" stroke="#333" stroke-width="2"/>
+  <polygon points="85,375 75,385 80,380" fill="#333"/>
+  <text x="150" y="280" font-family="Arial" font-size="12" text-anchor="middle">继承</text>
+  
+  <!-- UserEvent到UserRegisteredEvent -->
+  <line x1="80" y1="440" x2="80" y2="460" stroke="#333" stroke-width="2"/>
+  <polygon points="75,455 85,455 80,460" fill="#333"/>
+  <text x="100" y="450" font-family="Arial" font-size="12" text-anchor="start">继承</text>
+  
+  <!-- 说明 -->
+  <rect x="600" y="460" width="200" height="40" fill="white" stroke="#333" stroke-width="1" rx="5" ry="5"/>
+  <text x="700" y="485" font-family="Arial" font-size="12" text-anchor="middle">可以根据业务需求扩展更多事件类型</text>
+</svg>

@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="800" height="600" viewBox="0 0 800 600">
+  <!-- 定义样式 -->
+  <defs>
+    <style type="text/css">
+      .component { fill: #E3F2FD; stroke: #1976D2; stroke-width: 2; }
+      .processor { fill: #E8F5E9; stroke: #388E3C; stroke-width: 2; }
+      .storage { fill: #FFF3E0; stroke: #E65100; stroke-width: 2; }
+      .monitoring { fill: #F3E5F5; stroke: #7B1FA2; stroke-width: 2; }
+      .arrow { stroke: #616161; stroke-width: 2; marker-end: url(#arrowhead); }
+      .dashed-arrow { stroke: #616161; stroke-width: 2; stroke-dasharray: 5,5; marker-end: url(#arrowhead); }
+      .text { font-family: Arial; font-size: 14px; fill: #212121; }
+      .small-text { font-family: Arial; font-size: 12px; fill: #616161; }
+      .title { font-family: Arial; font-size: 18px; font-weight: bold; fill: #212121; }
+      .subtitle { font-family: Arial; font-size: 14px; font-style: italic; fill: #616161; }
+    </style>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#616161" />
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" class="title" text-anchor="middle">高性能事件处理与监控系统</text>
+  <text x="400" y="55" class="subtitle" text-anchor="middle">High-Performance Event Processing and Monitoring System</text>
+  
+  <!-- 事件源 -->
+  <rect x="50" y="100" width="120" height="60" rx="10" ry="10" class="component" />
+  <text x="110" y="135" class="text" text-anchor="middle">事件源</text>
+  <text x="110" y="155" class="small-text" text-anchor="middle">(Event Sources)</text>
+  
+  <!-- 事件输入适配器 -->
+  <rect x="50" y="200" width="120" height="60" rx="10" ry="10" class="component" />
+  <text x="110" y="235" class="text" text-anchor="middle">输入适配器</text>
+  <text x="110" y="255" class="small-text" text-anchor="middle">(Input Adapters)</text>
+  
+  <!-- 事件处理器 -->
+  <rect x="250" y="150" width="300" height="200" rx="10" ry="10" fill="#ECEFF1" stroke="#607D8B" stroke-width="2" />
+  <text x="400" y="175" class="text" text-anchor="middle">事件处理系统 (Event Processing System)</text>
+  
+  <!-- 事件处理器内部组件 -->
+  <rect x="270" y="200" width="120" height="60" rx="10" ry="10" class="processor" />
+  <text x="330" y="235" class="text" text-anchor="middle">事件批处理器</text>
+  <text x="330" y="255" class="small-text" text-anchor="middle">(Batch Processor)</text>
+  
+  <rect x="410" y="200" width="120" height="60" rx="10" ry="10" class="processor" />
+  <text x="470" y="235" class="text" text-anchor="middle">线程池处理器</text>
+  <text x="470" y="255" class="small-text" text-anchor="middle">(Thread Pool)</text>
+  
+  <rect x="270" y="280" width="120" height="60" rx="10" ry="10" class="processor" />
+  <text x="330" y="315" class="text" text-anchor="middle">分区处理器</text>
+  <text x="330" y="335" class="small-text" text-anchor="middle">(Partitioned)</text>
+  
+  <rect x="410" y="280" width="120" height="60" rx="10" ry="10" class="processor" />
+  <text x="470" y="315" class="text" text-anchor="middle">反应式处理器</text>
+  <text x="470" y="335" class="small-text" text-anchor="middle">(Reactive)</text>
+  
+  <!-- 事件存储 -->
+  <rect x="250" y="400" width="140" height="60" rx="10" ry="10" class="storage" />
+  <text x="320" y="435" class="text" text-anchor="middle">事件存储</text>
+  <text x="320" y="455" class="small-text" text-anchor="middle">(Event Store)</text>
+  
+  <!-- 事件查询服务 -->
+  <rect x="410" y="400" width="140" height="60" rx="10" ry="10" class="storage" />
+  <text x="480" y="435" class="text" text-anchor="middle">事件查询服务</text>
+  <text x="480" y="455" class="small-text" text-anchor="middle">(Query Service)</text>
+  
+  <!-- 监控系统 -->
+  <rect x="600" y="150" width="150" height="200" rx="10" ry="10" fill="#ECEFF1" stroke="#607D8B" stroke-width="2" />
+  <text x="675" y="175" class="text" text-anchor="middle">监控系统 (Monitoring)</text>
+  
+  <!-- 监控系统内部组件 -->
+  <rect x="615" y="200" width="120" height="40" rx="10" ry="10" class="monitoring" />
+  <text x="675" y="225" class="text" text-anchor="middle">事件追踪</text>
+  
+  <rect x="615" y="250" width="120" height="40" rx="10" ry="10" class="monitoring" />
+  <text x="675" y="275" class="text" text-anchor="middle">指标收集</text>
+  
+  <rect x="615" y="300" width="120" height="40" rx="10" ry="10" class="monitoring" />
+  <text x="675" y="325" class="text" text-anchor="middle">告警系统</text>
+  
+  <!-- 输出适配器 -->
+  <rect x="600" y="400" width="150" height="60" rx="10" ry="10" class="component" />
+  <text x="675" y="435" class="text" text-anchor="middle">输出适配器</text>
+  <text x="675" y="455" class="small-text" text-anchor="middle">(Output Adapters)</text>
+  
+  <!-- 背压控制 -->
+  <rect x="250" y="500" width="300" height="40" rx="10" ry="10" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2" />
+  <text x="400" y="525" class="text" text-anchor="middle">背压控制 (Backpressure Control)</text>
+  
+  <!-- 连接线 -->
+  <!-- 输入流 -->
+  <line x1="110" y1="160" x2="110" y2="200" class="arrow" />
+  <line x1="170" y1="230" x2="250" y2="230" class="arrow" />
+  <text x="210" y="220" class="small-text" text-anchor="middle">事件流入</text>
+  
+  <!-- 处理器内部流 -->
+  <line x1="330" y1="260" x2="330" y2="280" class="arrow" />
+  <line x1="470" y1="260" x2="470" y2="280" class="arrow" />
+  <line x1="390" y1="230" x2="410" y2="230" class="arrow" />
+  <line x1="390" y1="310" x2="410" y2="310" class="arrow" />
+  
+  <!-- 存储流 -->
+  <line x1="320" y1="350" x2="320" y2="400" class="arrow" />
+  <text x="340" y="380" class="small-text" text-anchor="middle">持久化</text>
+  
+  <line x1="480" y1="350" x2="480" y2="400" class="arrow" />
+  <text x="500" y="380" class="small-text" text-anchor="middle">查询</text>
+  
+  <!-- 监控流 -->
+  <line x1="550" y1="250" x2="600" y2="250" class="dashed-arrow" />
+  <text x="575" y="240" class="small-text" text-anchor="middle">监控</text>
+  
+  <!-- 输出流 -->
+  <line x1="550" y1="310" x2="600" y2="310" class="arrow" />
+  <text x="575" y="300" class="small-text" text-anchor="middle">输出事件</text>
+  
+  <line x1="675" y1="350" x2="675" y2="400" class="arrow" />
+  
+  <!-- 背压控制 -->
+  <line x1="400" y1="460" x2="400" y2="500" class="dashed-arrow" />
+  <line x1="400" y1="500" x2="110" y2="500" class="dashed-arrow" />
+  <line x1="110" y1="500" x2="110" y2="260" class="dashed-arrow" />
+  <text x="200" y="490" class="small-text" text-anchor="middle">背压信号</text>
+  
+  <!-- 系统组件说明 -->
+  <rect x="50" y="550" width="700" height="30" rx="5" ry="5" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="1" />
+  <text x="400" y="570" class="small-text" text-anchor="middle">系统特性: 高吞吐量 | 低延迟 | 可扩展性 | 容错性 | 可观测性 | 自适应控制</text>
+</svg>

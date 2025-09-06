@@ -1,0 +1,49 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="400" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">事件驱动架构核心组件</text>
+  
+  <!-- 事件生产者 -->
+  <rect x="100" y="100" width="150" height="80" fill="#4285f4" rx="10" ry="10" opacity="0.8"/>
+  <text x="175" y="145" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件生产者</text>
+  <text x="175" y="165" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(Event Producer)</text>
+  
+  <!-- 事件通道 -->
+  <rect x="325" y="100" width="150" height="80" fill="#ea4335" rx="10" ry="10" opacity="0.8"/>
+  <text x="400" y="145" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件通道</text>
+  <text x="400" y="165" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(Event Channel)</text>
+  
+  <!-- 事件处理器 -->
+  <rect x="550" y="100" width="150" height="80" fill="#fbbc05" rx="10" ry="10" opacity="0.8"/>
+  <text x="625" y="145" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件处理器</text>
+  <text x="625" y="165" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(Event Processor)</text>
+  
+  <!-- 事件消费者 -->
+  <rect x="325" y="250" width="150" height="80" fill="#34a853" rx="10" ry="10" opacity="0.8"/>
+  <text x="400" y="295" font-family="Arial" font-size="16" fill="white" text-anchor="middle">事件消费者</text>
+  <text x="400" y="315" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(Event Consumer)</text>
+  
+  <!-- 连接线 -->
+  <!-- 生产者到通道 -->
+  <line x1="250" y1="140" x2="325" y2="140" stroke="#333" stroke-width="2"/>
+  <polygon points="320,135 330,140 320,145" fill="#333"/>
+  
+  <!-- 通道到处理器 -->
+  <line x1="475" y1="140" x2="550" y2="140" stroke="#333" stroke-width="2"/>
+  <polygon points="545,135 555,140 545,145" fill="#333"/>
+  
+  <!-- 处理器到消费者 -->
+  <line x1="625" y1="180" x2="625" y2="230" stroke="#333" stroke-width="2"/>
+  <line x1="625" y1="230" x2="475" y2="290" stroke="#333" stroke-width="2"/>
+  <polygon points="480,285 470,290 480,295" fill="#333"/>
+  
+  <!-- 说明文本 -->
+  <text x="250" y="120" font-family="Arial" font-size="12" text-anchor="middle">生成事件</text>
+  <text x="510" y="120" font-family="Arial" font-size="12" text-anchor="middle">传输事件</text>
+  <text x="550" y="230" font-family="Arial" font-size="12" text-anchor="middle">处理并分发事件</text>
+  
+  <!-- 底部说明 -->
+  <text x="400" y="370" font-family="Arial" font-size="14" text-anchor="middle" font-style="italic">事件驱动架构通过松耦合的方式连接系统组件，提高系统的可扩展性和响应性</text>
+</svg>

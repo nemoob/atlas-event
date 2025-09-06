@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="800" height="600" viewBox="0 0 800 600">
+  <!-- 定义渐变和样式 -->
+  <defs>
+    <linearGradient id="service-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4e54c8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8f94fb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="kafka-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff9966;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff5e62;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="db-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#56ab2f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a8e063;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000044" />
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8f9fa" />
+  
+  <!-- 标题 -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" fill="#333333" font-weight="bold">微服务系统中的事件驱动通信流程</text>
+  
+  <!-- Kafka 事件总线 -->
+  <rect x="300" y="150" width="200" height="80" rx="10" ry="10" fill="url(#kafka-gradient)" filter="url(#shadow)" />
+  <text x="400" y="195" font-family="Arial" font-size="18" text-anchor="middle" fill="white" font-weight="bold">Kafka 事件总线</text>
+  
+  <!-- 用户服务 -->
+  <rect x="100" y="300" width="160" height="80" rx="10" ry="10" fill="url(#service-gradient)" filter="url(#shadow)" />
+  <text x="180" y="345" font-family="Arial" font-size="18" text-anchor="middle" fill="white" font-weight="bold">用户服务</text>
+  
+  <!-- 订单服务 -->
+  <rect x="320" y="300" width="160" height="80" rx="10" ry="10" fill="url(#service-gradient)" filter="url(#shadow)" />
+  <text x="400" y="345" font-family="Arial" font-size="18" text-anchor="middle" fill="white" font-weight="bold">订单服务</text>
+  
+  <!-- 支付服务 -->
+  <rect x="540" y="300" width="160" height="80" rx="10" ry="10" fill="url(#service-gradient)" filter="url(#shadow)" />
+  <text x="620" y="345" font-family="Arial" font-size="18" text-anchor="middle" fill="white" font-weight="bold">支付服务</text>
+  
+  <!-- 事件存储 -->
+  <rect x="100" y="450" width="160" height="80" rx="10" ry="10" fill="url(#db-gradient)" filter="url(#shadow)" />
+  <text x="180" y="495" font-family="Arial" font-size="18" text-anchor="middle" fill="white" font-weight="bold">事件存储</text>
+  
+  <!-- 消费记录 -->
+  <rect x="320" y="450" width="160" height="80" rx="10" ry="10" fill="url(#db-gradient)" filter="url(#shadow)" />
+  <text x="400" y="495" font-family="Arial" font-size="18" text-anchor="middle" fill="white" font-weight="bold">消费记录</text>
+  
+  <!-- 事件追踪 -->
+  <rect x="540" y="450" width="160" height="80" rx="10" ry="10" fill="url(#db-gradient)" filter="url(#shadow)" />
+  <text x="620" y="495" font-family="Arial" font-size="18" text-anchor="middle" fill="white" font-weight="bold">事件追踪</text>
+  
+  <!-- 连接线和箭头 -->
+  <!-- 用户服务到Kafka -->
+  <path d="M180,300 L320,190" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <text x="220" y="230" font-family="Arial" font-size="12" fill="#555">1. 发布事件</text>
+  
+  <!-- Kafka到订单服务 -->
+  <path d="M400,230 L400,300" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <text x="410" y="270" font-family="Arial" font-size="12" fill="#555">2. 消费事件</text>
+  
+  <!-- Kafka到支付服务 -->
+  <path d="M480,190 L620,300" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <text x="560" y="230" font-family="Arial" font-size="12" fill="#555">2. 消费事件</text>
+  
+  <!-- 用户服务到事件存储 -->
+  <path d="M180,380 L180,450" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <text x="190" y="420" font-family="Arial" font-size="12" fill="#555">3. 持久化事件</text>
+  
+  <!-- 订单服务到消费记录 -->
+  <path d="M400,380 L400,450" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <text x="410" y="420" font-family="Arial" font-size="12" fill="#555">4. 记录消费</text>
+  
+  <!-- 支付服务到事件追踪 -->
+  <path d="M620,380 L620,450" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <text x="630" y="420" font-family="Arial" font-size="12" fill="#555">5. 追踪处理</text>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+    </marker>
+  </defs>
+  
+  <!-- 图例 -->
+  <rect x="650" y="80" width="15" height="15" fill="url(#service-gradient)" />
+  <text x="670" y="93" font-family="Arial" font-size="12" fill="#333">微服务</text>
+  
+  <rect x="650" y="105" width="15" height="15" fill="url(#kafka-gradient)" />
+  <text x="670" y="118" font-family="Arial" font-size="12" fill="#333">事件总线</text>
+  
+  <rect x="650" y="130" width="15" height="15" fill="url(#db-gradient)" />
+  <text x="670" y="143" font-family="Arial" font-size="12" fill="#333">存储组件</text>
+  
+  <!-- 流程说明 -->
+  <text x="400" y="550" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">
+    事件流程: 发布 → 分发 → 消费 → 确认 → 追踪
+  </text>
+  <text x="400" y="570" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">
+    保证可靠性: 事件持久化 + 消费确认 + 失败重试
+  </text>
+</svg>
